@@ -79,29 +79,23 @@ app.post("/people", async (req, res) => {
     }
 });
 
-// People Update Route
-app.put("/people/:id", async (req, res)=> {
+// People Update Route 
+app.put("/people/:id", async (req, res) => {
     try {
-        // send all people
-        res.json(
-            await People.findByIdAndUpdate(req.params.id, req.body, {new: true})
-        )
-    } catch (error) {
-        // send error
+        res.json(await People.findByIdAndUpdate(req.params.id, req.body, {new: true}))
+    } catch (error){
         res.status(400).json(error)
     }
 })
 
 // People Delete Route
-app.delete("/people/:id", async (req, res)=> {
+app.delete("/people/:id", async (req, res) => {
     try {
-        // send all people
-        res.json(await People.findOneAndRemove(req.params.id));
+      res.json(await People.findByIdAndRemove(req.params.id));
     } catch (error) {
-        // send error
-        res.status(400).json(error)
+      res.status(400).json(error);
     }
-})
+  });
 ///////////////////////////////
 // LISTENER
 ////////////////////////////////
